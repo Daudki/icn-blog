@@ -1,0 +1,219 @@
+{
+  "year1": {
+    "semester1": {
+      "name": "Semester 1",
+      "modules": [
+        {
+          "name": "Programming Concepts",
+          "code": "ICN 1101",
+          "icon": "programming",
+          "tags": ["python", "automation", "file-ops"],
+          "description": "Python fundamentals — variables, control flow, functions, file operations, and automation basics.",
+          "projects": [
+            {
+              "title": "University Folder Organizer",
+              "difficulty": "Beginner",
+              "filename": "folder_organizer.py",
+              "description": "Automatically create your university course folder structure for the semester.",
+              "code": "import os\nfrom pathlib import Path\n\ndef create_uni_structure():\n    home = Path.home() / 'MUST'\n    year = home / 'Year1'\n    \n    courses = {\n        'ICN1101-Programming': ['Lectures', 'Assignments', 'Code', 'Notes'],\n        'ICN1102-Networks': ['Lectures', 'Labs', 'PacketTracer', 'Notes'],\n        'ICN1103-OS': ['Lectures', 'Labs', 'Assignments'],\n        'ICN1104-Architecture': ['Lectures', 'Notes', 'Diagrams']\n    }\n    \n    for course, folders in courses.items():\n        course_path = year / course\n        for folder in folders:\n            (course_path / folder).mkdir(parents=True, exist_ok=True)\n        print(f'✅ Created: {course}')\n    \n    print(f'\\n📁 All folders ready at: {year}')\n\nif __name__ == '__main__':\n    create_uni_structure()",
+              "explanation": [
+                "<strong>Line 1-2:</strong> Import os and Path from pathlib. Path is the modern way to handle file paths — it's object-oriented and works across all operating systems.",
+                "<strong>Line 5:</strong> Path.home() returns your user directory. We append 'MUST' as the root university folder. Works on Windows, Linux, and Mac.",
+                "<strong>Lines 8-13:</strong> Dictionary mapping course codes to their required subfolders. This is your configuration layer — edit to match your actual courses each semester.",
+                "<strong>Lines 15-19:</strong> Loop through each course, create Year1 folder, then create all subfolders. mkdir(parents=True) creates parent directories automatically. exist_ok=True prevents errors if folders already exist.",
+                "<strong>Line 18:</strong> The / operator on Path objects joins paths cleanly. Equivalent to os.path.join() but more readable."
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Computer Systems Architecture",
+          "code": "ICN 1102",
+          "icon": "systems",
+          "tags": ["hardware", "cpu", "memory", "monitoring"],
+          "description": "CPU architecture, memory hierarchy, storage systems. Build system profilers and hardware monitors.",
+          "projects": [
+            {
+              "title": "System Hardware Profiler",
+              "difficulty": "Beginner",
+              "filename": "system_profiler.py",
+              "description": "Display detailed CPU, RAM, and disk information — your own Task Manager replacement.",
+              "code": "import psutil\nimport platform\n\ndef system_profiler():\n    print('=' * 50)\n    print('  SYSTEM HARDWARE PROFILER')\n    print('=' * 50)\n    \n    print(f'\\n🖥️  CPU:')\n    print(f'   Processor: {platform.processor()}')\n    print(f'   Physical cores: {psutil.cpu_count(logical=False)}')\n    print(f'   Total logical cores: {psutil.cpu_count(logical=True)}')\n    print(f'   Max frequency: {psutil.cpu_freq().max:.0f} MHz')\n    print(f'   Current usage: {psutil.cpu_percent(interval=1)}%')\n    \n    mem = psutil.virtual_memory()\n    print(f'\\n💾 RAM:')\n    print(f'   Total: {mem.total / (1024**3):.1f} GB')\n    print(f'   Available: {mem.available / (1024**3):.1f} GB')\n    print(f'   Used: {mem.percent}%')\n    \n    print(f'\\n💿 Disk:')\n    for part in psutil.disk_partitions():\n        try:\n            usage = psutil.disk_usage(part.mountpoint)\n            print(f'   {part.device} — {usage.total/(1024**3):.1f} GB total')\n        except:\n            pass\n\nif __name__ == '__main__':\n    system_profiler()",
+              "explanation": [
+                "<strong>Line 1:</strong> psutil (Python System Utilities) is the standard library for system information. Install with pip install psutil.",
+                "<strong>Line 11:</strong> cpu_count(logical=False) returns physical cores. With hyperthreading, logical cores are typically double the physical count.",
+                "<strong>Line 13:</strong> cpu_freq().max gives maximum clock speed. Some virtual machines don't expose this information.",
+                "<strong>Lines 17-20:</strong> virtual_memory() returns a named tuple. /(1024**3) converts bytes to gigabytes for human-readable output.",
+                "<strong>Lines 23-28:</strong> disk_partitions() lists all drives. disk_usage() shows space. Some partitions need admin rights."
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Computer Network Engineering",
+          "code": "ICN 1103",
+          "icon": "networking",
+          "tags": ["networking", "tcp/ip", "osi", "scanner"],
+          "description": "OSI model, TCP/IP stack, IP addressing, subnetting. Build network discovery and diagnostic tools.",
+          "projects": [
+            {
+              "title": "Network Device Scanner",
+              "difficulty": "Beginner",
+              "filename": "network_scanner.py",
+              "description": "Discover all devices on your local network using ARP requests.",
+              "code": "from scapy.all import ARP, Ether, srp\n\ndef scan_network(ip_range='192.168.1.0/24'):\n    arp = ARP(pdst=ip_range)\n    ether = Ether(dst='ff:ff:ff:ff:ff:ff')\n    packet = ether / arp\n    result = srp(packet, timeout=3, verbose=0)[0]\n    \n    devices = []\n    for sent, received in result:\n        devices.append({'ip': received.psrc, 'mac': received.hwsrc})\n    return devices\n\nif __name__ == '__main__':\n    devices = scan_network()\n    print(f'Found {len(devices)} devices:')\n    for d in devices:\n        print(f'  {d[\"ip\"]:15} — {d[\"mac\"]}')",
+              "explanation": [
+                "<strong>Line 1:</strong> Scapy is the Swiss Army knife of packet manipulation. ARP handles address resolution, Ether handles frames, srp sends/receives.",
+                "<strong>Line 4:</strong> pdst (protocol destination) sets the IP range to scan. '192.168.1.0/24' scans 254 addresses.",
+                "<strong>Line 5:</strong> 'ff:ff:ff:ff:ff:ff' is the broadcast MAC — the packet goes to ALL devices on the local network.",
+                "<strong>Line 6:</strong> The / operator stacks layers. This creates an Ethernet frame containing an ARP request.",
+                "<strong>Line 7:</strong> srp() sends and receives at Layer 2. timeout=3 waits 3 seconds. [0] gets only answered packets."
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Operating Systems",
+          "code": "ICN 1104",
+          "icon": "systems",
+          "tags": ["os", "processes", "sysadmin", "linux"],
+          "description": "Process management, memory management, file systems. Build sysadmin automation and monitoring tools.",
+          "projects": [
+            {
+              "title": "Process Monitor & Manager",
+              "difficulty": "Intermediate",
+              "filename": "process_monitor.py",
+              "description": "List running processes, identify resource hogs, and safely terminate problematic programs.",
+              "code": "import psutil\n\ndef top_processes(limit=10):\n    procs = []\n    for p in psutil.process_iter(['pid', 'name', 'cpu_percent', 'memory_percent']):\n        try:\n            info = p.info\n            info['mem_mb'] = p.memory_info().rss / (1024 * 1024)\n            procs.append(info)\n        except:\n            continue\n    procs.sort(key=lambda x: x['mem_mb'], reverse=True)\n    return procs[:limit]\n\nif __name__ == '__main__':\n    print('Top Memory Users:\\n')\n    for i, p in enumerate(top_processes(), 1):\n        print(f'{i}. PID:{p[\"pid\"]:6} | {p[\"mem_mb\"]:6.0f}MB | {p[\"name\"]}')",
+              "explanation": [
+                "<strong>Line 3:</strong> process_iter() loops through all running processes. Specifying fields improves performance by only retrieving needed data.",
+                "<strong>Line 6:</strong> memory_info().rss is Resident Set Size — the actual physical RAM the process occupies.",
+                "<strong>Line 10:</strong> Lambda sorts by memory usage descending. Change to 'cpu_percent' to sort by CPU instead.",
+                "<strong>Line 11:</strong> [:limit] returns only the top N processes. Prevents overwhelming output on systems with hundreds of processes."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "semester2": {
+      "name": "Semester 2",
+      "modules": [
+        {
+          "name": "Object Oriented Programming",
+          "code": "ICN 1201",
+          "icon": "programming",
+          "tags": ["python", "oop", "classes", "inheritance"],
+          "description": "Classes, objects, inheritance, polymorphism. Model network devices and systems as Python classes.",
+          "projects": [
+            {
+              "title": "Network Device Class Hierarchy",
+              "difficulty": "Intermediate",
+              "filename": "network_devices.py",
+              "description": "Design an OOP model of network infrastructure — routers, switches, and firewalls as Python classes.",
+              "code": "class NetworkDevice:\n    def __init__(self, name, ip, mac=None):\n        self.name = name\n        self.ip = ip\n        self.mac = mac\n        self.online = False\n    \n    def ping(self):\n        import os\n        param = '-n 1' if os.name == 'nt' else '-c 1'\n        response = os.system(f'ping {param} {self.ip} > /dev/null 2>&1')\n        self.online = (response == 0)\n        return self.online\n    \n    def __str__(self):\n        status = '🟢' if self.online else '🔴'\n        return f'{status} {self.name} ({self.ip})'\n\nclass Router(NetworkDevice):\n    def __init__(self, name, ip, model=None):\n        super().__init__(name, ip)\n        self.model = model\n        self.routes = []\n    \n    def add_route(self, network, gateway):\n        self.routes.append({'network': network, 'gateway': gateway})\n\nclass Switch(NetworkDevice):\n    def __init__(self, name, ip, ports=24):\n        super().__init__(name, ip)\n        self.ports = ports\n        self.mac_table = {}\n\nif __name__ == '__main__':\n    router = Router('Core-R1', '192.168.1.1', 'Cisco 2900')\n    router.add_route('10.0.0.0/8', '192.168.1.254')\n    print(f'Created: {router}')\n    print(f'Routes: {router.routes}')",
+              "explanation": [
+                "<strong>Lines 1-6:</strong> Base NetworkDevice class. __init__ is the constructor — runs when you create a new device. All devices have name, IP, MAC, and online status.",
+                "<strong>Lines 8-11:</strong> ping() method checks if device is reachable. Uses OS ping command — Windows uses -n, Unix uses -c for count.",
+                "<strong>Lines 13-15:</strong> __str__ defines what print(device) displays. Shows colored indicator based on online status.",
+                "<strong>Lines 17-23:</strong> Router INHERITS from NetworkDevice. super().__init__() calls parent constructor. Adds routing table specific to routers.",
+                "<strong>Lines 25-29:</strong> Switch also inherits from NetworkDevice. Has port count and MAC address table."
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Data Communication",
+          "code": "ICN 1202",
+          "icon": "networking",
+          "tags": ["networking", "packets", "protocols", "scapy"],
+          "description": "Communication protocols, packet structure, data transmission. Analyze network traffic with Python.",
+          "projects": [
+            {
+              "title": "Packet Sniffer & Analyzer",
+              "difficulty": "Intermediate",
+              "filename": "packet_sniffer.py",
+              "description": "Capture and analyze live network packets — understand TCP/IP by seeing real traffic.",
+              "code": "from scapy.all import sniff, IP, TCP, UDP\n\ndef analyze_packet(packet):\n    if packet.haslayer(IP):\n        src = packet[IP].src\n        dst = packet[IP].dst\n        proto = packet[IP].proto\n        \n        if packet.haslayer(TCP):\n            print(f'TCP {src}:{packet[TCP].sport} -> {dst}:{packet[TCP].dport}')\n        elif packet.haslayer(UDP):\n            print(f'UDP {src}:{packet[UDP].sport} -> {dst}:{packet[UDP].dport}')\n\nprint('Capturing 20 packets...')\nsniff(prn=analyze_packet, count=20)\nprint('Capture complete.')",
+              "explanation": [
+                "<strong>Line 1:</strong> sniff() captures packets. IP, TCP, UDP are layer classes for accessing protocol fields.",
+                "<strong>Line 4:</strong> haslayer(IP) checks if the packet contains an IP layer. Filters out non-IP traffic.",
+                "<strong>Lines 5-7:</strong> Extract source IP, destination IP, and protocol number from the IP header.",
+                "<strong>Lines 9-12:</strong> Check for TCP or UDP layers. Print source/destination IP:port for each packet.",
+                "<strong>Line 15:</strong> prn=analyze_packet sets callback function. count=20 stops after 20 packets. Requires root/admin."
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Routing and Switching",
+          "code": "ICN 1203",
+          "icon": "networking",
+          "tags": ["networking", "routing", "switching", "automation"],
+          "description": "Routing protocols, switching concepts, VLANs. Automate network device configuration with Python.",
+          "projects": [
+            {
+              "title": "Network Config Backup Tool",
+              "difficulty": "Intermediate",
+              "filename": "config_backup.py",
+              "description": "Automatically backup configurations from multiple network devices via SSH.",
+              "code": "from netmiko import ConnectHandler\nfrom datetime import datetime\n\ndef backup_device(device_info):\n    try:\n        conn = ConnectHandler(**device_info)\n        hostname = conn.find_prompt().strip('#')\n        config = conn.send_command('show running-config')\n        \n        filename = f'{hostname}_{datetime.now():%Y%m%d}.cfg'\n        with open(filename, 'w') as f:\n            f.write(config)\n        \n        conn.disconnect()\n        print(f'✅ Backed up: {hostname} -> {filename}')\n    except Exception as e:\n        print(f'❌ Failed: {device_info[\"host\"]} — {e}')\n\ndevices = [\n    {'device_type': 'cisco_ios', 'host': '192.168.1.1', \n     'username': 'admin', 'password': 'cisco'},\n]\n\nfor device in devices:\n    backup_device(device)",
+              "explanation": [
+                "<strong>Line 1:</strong> Netmiko simplifies SSH connections to network devices. Install with pip install netmiko.",
+                "<strong>Line 6:</strong> **device_info unpacks the dictionary as keyword arguments to ConnectHandler.",
+                "<strong>Line 7:</strong> find_prompt() returns the device prompt. Stripping '#' gives the hostname.",
+                "<strong>Line 8:</strong> send_command() executes a command and returns the output. 'show running-config' dumps the config.",
+                "<strong>Line 10:</strong> Filename includes hostname and date for organization. Format: Router1_20240704.cfg"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Database Design and Implementation",
+          "code": "ICN 1204",
+          "icon": "data",
+          "tags": ["database", "sqlite", "sql", "crud"],
+          "description": "Database design, normalization, SQL. Build database-driven applications with SQLite and Python.",
+          "projects": [
+            {
+              "title": "Network Inventory Database",
+              "difficulty": "Intermediate",
+              "filename": "inventory_db.py",
+              "description": "Complete CRUD system for tracking network devices, locations, and maintenance history.",
+              "code": "import sqlite3\n\nclass InventoryDB:\n    def __init__(self, db='inventory.db'):\n        self.conn = sqlite3.connect(db)\n        self.create_tables()\n    \n    def create_tables(self):\n        self.conn.execute('''\n            CREATE TABLE IF NOT EXISTS devices (\n                id INTEGER PRIMARY KEY,\n                hostname TEXT UNIQUE NOT NULL,\n                ip TEXT UNIQUE NOT NULL,\n                device_type TEXT,\n                location TEXT,\n                status TEXT DEFAULT \"active\"\n            )\n        ''')\n        self.conn.commit()\n    \n    def add_device(self, hostname, ip, dtype, location):\n        self.conn.execute(\n            'INSERT INTO devices (hostname, ip, device_type, location) VALUES (?,?,?,?)',\n            (hostname, ip, dtype, location)\n        )\n        self.conn.commit()\n        print(f'✅ Added: {hostname}')\n    \n    def search(self, query=''):\n        cursor = self.conn.execute(\n            'SELECT * FROM devices WHERE hostname LIKE ? OR ip LIKE ?',\n            (f'%{query}%', f'%{query}%')\n        )\n        return cursor.fetchall()\n\nif __name__ == '__main__':\n    db = InventoryDB()\n    db.add_device('Core-SW1', '10.0.0.1', 'Switch', 'Server Room')\n    for device in db.search('Core'):\n        print(device)",
+              "explanation": [
+                "<strong>Line 1:</strong> sqlite3 comes with Python — no installation needed. Perfect for embedded databases.",
+                "<strong>Lines 4-5:</strong> __init__ connects to database file. Creates it if it doesn't exist. Calls create_tables() on startup.",
+                "<strong>Lines 8-16:</strong> CREATE TABLE IF NOT EXISTS is idempotent — safe to run multiple times. UNIQUE constraints prevent duplicate entries.",
+                "<strong>Lines 19-22:</strong> Parameterized queries with ? placeholders prevent SQL injection. Never concatenate user input into SQL strings.",
+                "<strong>Lines 25-29:</strong> LIKE with % wildcards enables partial matching. Search 'sw' finds 'switch', 'SW1', etc."
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Hardware and Software Integration",
+          "code": "ICN 1205",
+          "icon": "systems",
+          "tags": ["hardware", "serial", "firmware", "integration"],
+          "description": "Hardware-software interfaces, device drivers, firmware. Communicate with hardware using Python.",
+          "projects": [
+            {
+              "title": "Serial Port Communicator",
+              "difficulty": "Intermediate",
+              "filename": "serial_comm.py",
+              "description": "Communicate with hardware devices (Arduino, routers, sensors) via serial port.",
+              "code": "import serial\nimport serial.tools.list_ports\n\ndef list_serial_ports():\n    ports = serial.tools.list_ports.comports()\n    print('Available ports:')\n    for port in ports:\n        print(f'  {port.device} — {port.description}')\n    return [p.device for p in ports]\n\ndef connect_and_read(port, baud=9600):\n    try:\n        ser = serial.Serial(port, baud, timeout=1)\n        print(f'Connected to {port}')\n        for _ in range(5):\n            if ser.in_waiting:\n                data = ser.readline().decode().strip()\n                print(f'Received: {data}')\n        ser.close()\n    except Exception as e:\n        print(f'Error: {e}')\n\nif __name__ == '__main__':\n    ports = list_serial_ports()\n    if ports:\n        connect_and_read(ports[0])",
+              "explanation": [
+                "<strong>Line 1:</strong> pyserial is the standard library for serial communication. Install with pip install pyserial.",
+                "<strong>Lines 4-8:</strong> list_ports.comports() enumerates all serial ports on the system. Returns port name and description.",
+                "<strong>Lines 11-12:</strong> Serial() opens a connection. Baud rate must match the device (9600 is common for Arduino).",
+                "<strong>Lines 14-16:</strong> in_waiting checks if data is available. readline() reads until newline. decode() converts bytes to string."
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

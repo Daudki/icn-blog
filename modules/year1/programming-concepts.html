@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Programming Concepts — Python file organizer project with detailed line-by-line explanations.">
+    
+    <title>Programming Concepts | ICN Blog</title>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../../../../css/style.css">
+    <link rel="stylesheet" href="../../../../css/modules.css">
+    <link rel="stylesheet" href="../../../../css/components.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Syntax Highlighting (Prism.js) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body>
+
+    <!-- Global Header -->
+    <div id="global-header"></div>
+
+    <!-- ==================== BREADCRUMB ==================== -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol>
+            <li><a href="../../../../index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+            <li><a href="../../../year1/">Year 1</a></li>
+            <li><a href="../">Semester 1</a></li>
+            <li aria-current="page">Programming Concepts</li>
+        </ol>
+    </nav>
+
+    <!-- ==================== MODULE HERO ==================== -->
+    <section class="module-hero">
+        <div class="module-hero-content">
+            <span class="module-year-badge">Year 1 · Semester 1</span>
+            <h1>Programming Concepts</h1>
+            <p>Introduction to programming using Python. Variables, control flow, functions, and problem-solving.</p>
+            <div class="module-meta">
+                <span><i class="fa-solid fa-tag"></i> Python, Fundamentals</span>
+                <span><i class="fa-solid fa-clock"></i> 2 Projects</span>
+                <span><i class="fa-solid fa-signal"></i> Beginner</span>
+            </div>
+        </div>
+        <div class="module-hero-image">
+            <img src="../../../../images/modules/programming/hero.jpg" 
+                 alt="Programming Concepts illustration"
+                 loading="lazy"
+                 onerror="this.style.display='none'">
+        </div>
+    </section>
+
+    <!-- ==================== MODULE CONTENT ==================== -->
+    <main class="module-content">
+        <div class="module-layout">
+            
+            <!-- Sidebar Navigation -->
+            <aside class="module-sidebar">
+                <nav class="module-toc">
+                    <h3>On This Page</h3>
+                    <ul>
+                        <li><a href="#overview">Overview</a></li>
+                        <li><a href="#project-1">Project: File Organizer</a></li>
+                        <li><a href="#project-2">Project: System Monitor</a></li>
+                        <li><a href="#key-concepts">Key Concepts</a></li>
+                        <li><a href="#resources">Resources</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="module-nav-adjacent">
+                    <h3>Adjacent Modules</h3>
+                    <a href="../computer-systems-architecture.html" class="adjacent-link">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        Computer Systems Architecture
+                    </a>
+                    <a href="../operating-systems.html" class="adjacent-link">
+                        Operating Systems
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <article class="module-article">
+                
+                <!-- Overview -->
+                <section id="overview">
+                    <h2>Overview</h2>
+                    <p>This module introduces the fundamentals of programming using Python...</p>
+                </section>
+
+                <!-- Project 1 -->
+                <section id="project-1" class="project-section">
+                    <div class="project-header">
+                        <h2>
+                            <i class="fa-solid fa-diagram-project"></i>
+                            Project: Automated File Organizer
+                        </h2>
+                        <div class="project-meta">
+                            <span class="difficulty beginner">Beginner</span>
+                            <span class="time"><i class="fa-solid fa-clock"></i> 30 minutes</span>
+                        </div>
+                    </div>
+                    
+                    <div class="project-description">
+                        <p>Build a Python script that automatically organizes files in a folder by their type...</p>
+                        
+                        <h3>What You'll Learn</h3>
+                        <ul class="objectives-list">
+                            <li><i class="fa-solid fa-check"></i> Work with os and pathlib modules</li>
+                            <li><i class="fa-solid fa-check"></i> Understand file system operations</li>
+                            <li><i class="fa-solid fa-check"></i> Practice dictionary mapping</li>
+                            <li><i class="fa-solid fa-check"></i> Handle file extensions</li>
+                        </ul>
+                    </div>
+
+                    <!-- Code Section 1 -->
+                    <div class="code-section">
+                        <div class="code-section-header">
+                            <h3>Step 1: Import Required Modules</h3>
+                            <button class="copy-code-btn" data-code="code-block-1">
+                                <i class="fa-solid fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        
+                        <div class="code-block" id="code-block-1">
+                            <pre><code class="language-python">import os
+import shutil
+from pathlib import Path</code></pre>
+                        </div>
+                        
+                        <div class="explanation-box">
+                            <h4><i class="fa-solid fa-circle-info"></i> Line-by-Line Explanation</h4>
+                            <ol>
+                                <li>
+                                    <strong><code>import os</code></strong> — The <code>os</code> module provides functions to interact with the operating system. You'll use it for file operations like checking if files exist, creating directories, and getting file information.
+                                </li>
+                                <li>
+                                    <strong><code>import shutil</code></strong> — Short for "shell utilities," this module offers high-level file operations. The key function you'll use is <code>shutil.move()</code> to relocate files between folders.
+                                </li>
+                                <li>
+                                    <strong><code>from pathlib import Path</code></strong> — <code>pathlib</code> is the modern, object-oriented way to handle file paths. Instead of string manipulation (<code>'/home/user/docs'</code>), you work with <code>Path</code> objects that have useful methods like <code>.suffix</code>, <code>.name</code>, and <code>.iterdir()</code>.
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <!-- Code Section 2 -->
+                    <div class="code-section">
+                        <div class="code-section-header">
+                            <h3>Step 2: Define the File Extension Map</h3>
+                            <button class="copy-code-btn" data-code="code-block-2">
+                                <i class="fa-solid fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        
+                        <div class="code-block" id="code-block-2">
+                            <pre><code class="language-python">FOLDER_MAP = {
+    '.jpg': 'Images',
+    '.png': 'Images',
+    '.gif': 'Images',
+    '.pdf': 'Documents',
+    '.docx': 'Documents',
+    '.mp3': 'Music',
+    '.mp4': 'Videos',
+    '.py': 'Code',
+    '.zip': 'Archives'
+}</code></pre>
+                        </div>
+                        
+                        <div class="explanation-box">
+                            <h4><i class="fa-solid fa-circle-info"></i> Line-by-Line Explanation</h4>
+                            <ol>
+                                <li>
+                                    <strong><code>FOLDER_MAP = { ... }</code></strong> — This is a Python <strong>dictionary</strong>. Each <strong>key</strong> is a file extension (like <code>'.pdf'</code>), and each <strong>value</strong> is the destination folder name.
+                                </li>
+                                <li>
+                                    Notice how multiple extensions (<code>'.jpg'</code>, <code>'.png'</code>, <code>'.gif'</code>) all map to the same folder <code>'Images'</code>. This groups related file types together.
+                                </li>
+                                <li>
+                                    <strong>Why a dictionary?</strong> Dictionaries provide O(1) lookup time — checking where a <code>.pdf</code> file should go is instant, no matter how many extensions you add.
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <!-- ... more code sections ... -->
+
+                    <!-- Full Script Download -->
+                    <div class="full-script-download">
+                        <h3>Complete Script</h3>
+                        <p>Download the full, ready-to-run Python script:</p>
+                        <a href="scripts/file_organizer.py" class="btn btn-primary" download>
+                            <i class="fa-solid fa-download"></i> Download file_organizer.py
+                        </a>
+                    </div>
+                </section>
+
+                <!-- Key Concepts -->
+                <section id="key-concepts">
+                    <h2>Key Concepts from This Module</h2>
+                    <div class="concepts-grid">
+                        <div class="concept-card">
+                            <i class="fa-solid fa-box"></i>
+                            <h3>Variables</h3>
+                            <p>Named containers for storing data values</p>
+                        </div>
+                        <div class="concept-card">
+                            <i class="fa-solid fa-code-branch"></i>
+                            <h3>Control Flow</h3>
+                            <p>if/else statements and loops for decision making</p>
+                        </div>
+                        <div class="concept-card">
+                            <i class="fa-solid fa-cube"></i>
+                            <h3>Functions</h3>
+                            <p>Reusable blocks of code with defined inputs/outputs</p>
+                        </div>
+                    </div>
+                </section>
+
+            </article>
+        </div>
+    </main>
+
+    <!-- Global Footer -->
+    <div id="global-footer"></div>
+
+    <!-- Scripts -->
+    <script src="../../../../js/modules.js"></script>
+    <script src="../../../../js/navigation.js"></script>
+    <script src="../../../../js/ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            loadGlobalHeader();
+            loadGlobalFooter();
+            initModulePage();
+        });
+    </script>
+</body>
+</html>

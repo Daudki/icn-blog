@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="About ICN Blog — Python × Networking × Security. Built by theOutcast at MUST.">
+    <title>About | ICN Blog</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --bg: #0a0e17;
+            --bg-card: #111827;
+            --border: #21262d;
+            --text: #e6edf3;
+            --text-muted: #8b949e;
+            --accent: #58a6ff;
+            --radius: 8px;
+            --max: 800px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        .header {
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-inner {
+            max-width: var(--max);
+            margin: 0 auto;
+            padding: 0 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 60px;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        .logo i { color: var(--accent); font-size: 1.3rem; }
+        .nav-links { display: flex; gap: 0.5rem; }
+        .nav-links a {
+            color: var(--text-muted);
+            padding: 0.4rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            transition: all 0.15s;
+        }
+        .nav-links a:hover { color: var(--text); background: var(--bg-card); text-decoration: none; }
+
+        .container {
+            max-width: var(--max);
+            margin: 0 auto;
+            padding: 3rem 1.25rem;
+        }
+
+        .page-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+        .page-subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            transition: border-color 0.2s;
+        }
+        .card:hover { border-color: #30363d; }
+        .card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .card h3 i { color: var(--accent); }
+        .card p { color: var(--text-muted); font-size: 0.95rem; }
+
+        .goals {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        @media (max-width: 600px) { .goals { grid-template-columns: 1fr; } }
+        .goal-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.25rem;
+            text-align: center;
+        }
+        .goal-card i {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+        .goal-card h4 { font-size: 0.95rem; margin-bottom: 0.4rem; }
+        .goal-card p { color: var(--text-muted); font-size: 0.82rem; }
+
+        .footer {
+            background: var(--bg-card);
+            border-top: 1px solid var(--border);
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 3rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+        .footer strong { color: var(--text); }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="header-inner">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-network-wired"></i>
+                ICN Blog
+            </a>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="index.html#modules">Modules</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1 class="page-title">About ICN Blog</h1>
+        <p class="page-subtitle">Transforming BSc Information & Computer Networking theory into practical Python projects.</p>
+
+        <div class="card">
+            <h3><i class="fa-solid fa-bullseye"></i> Purpose</h3>
+            <p>This blog transforms the BSc Information & Computer Networking curriculum at <strong>Mbeya University of Science and Technology</strong> into practical, code-driven Python projects. Every module gets at least one working project that bridges the gap between classroom theory and real-world implementation.</p>
+        </div>
+
+        <div class="card">
+            <h3><i class="fa-solid fa-user"></i> Author</h3>
+            <p>Built by <strong>theOutcast</strong> — an ICN student who believes the best way to learn networking, security, and automation is by building real tools, not just reading slides.</p>
+        </div>
+
+        <div class="card">
+            <h3><i class="fa-solid fa-code"></i> Philosophy</h3>
+            <p><strong>Code-first learning.</strong> Detailed line-by-line explanations. Offline-ready. Every project includes breakdowns so you understand what every line does — not just copy-paste. This isn't a tutorial site. It's a build log.</p>
+        </div>
+
+        <h2 style="margin-top: 2rem;">The Three Goals</h2>
+
+        <div class="goals">
+            <div class="goal-card">
+                <i class="fa-solid fa-robot" style="color: #a371f7;"></i>
+                <h4>Automation</h4>
+                <p>File ops, system administration, network configuration — automate the boring stuff with Python.</p>
+            </div>
+            <div class="goal-card">
+                <i class="fa-solid fa-brain" style="color: #ec4899;"></i>
+                <h4>Machine Learning</h4>
+                <p>Intrusion detection, traffic classification, anomaly detection — ML applied to networking.</p>
+            </div>
+            <div class="goal-card">
+                <i class="fa-solid fa-user-secret" style="color: #f85149;"></i>
+                <h4>Cybersecurity</h4>
+                <p>BlackHat Python, pentesting tools, forensics, ethical hacking — understand attacks to build better defenses.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3><i class="fa-solid fa-graduation-cap"></i> University</h3>
+            <p>Mbeya University of Science & Technology (MUST)<br>BSc Information & Computer Networking<br>4-Year Program — 26 Python-ready modules</p>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>ICN Blog — Built by <strong>theOutcast</strong> | Mbeya University of Science & Technology</p>
+        <p style="margin-top:0.3rem;">Python × Networking × Security</p>
+    </footer>
+
+</body>
+</html>

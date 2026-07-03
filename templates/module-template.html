@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{MODULE_DESCRIPTION}}">
+    <meta name="author" content="theOutcast">
+    
+    <title>{{MODULE_TITLE}} — {{MODULE_CODE}} | ICN Blog</title>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/modules.css">
+    <link rel="stylesheet" href="../../css/responsive.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Prism.js for syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <!-- HEADER -->
+
+    <!-- ==================== BREADCRUMB ==================== -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+        <div class="breadcrumb-container">
+            <ol>
+                <li><a href="../../index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li><a href="../{{MODULE_YEAR_SLUG}}/">{{MODULE_YEAR}}</a></li>
+                <li aria-current="page">{{MODULE_TITLE}}</li>
+            </ol>
+        </div>
+    </nav>
+
+    <!-- ==================== MODULE HERO ==================== -->
+    <section class="module-hero">
+        <div class="module-hero-container">
+            <div class="module-hero-content">
+                <span class="module-badge">{{MODULE_YEAR}} · {{MODULE_SEMESTER}}</span>
+                <h1>{{MODULE_TITLE}}</h1>
+                <p class="module-code">{{MODULE_CODE}}</p>
+                <p class="module-description">{{MODULE_DESCRIPTION}}</p>
+                
+                <!-- Module Meta -->
+                <div class="module-meta">
+                    <span><i class="fa-solid fa-code"></i> {{PROJECT_COUNT}} Python Project{{PROJECT_COUNT_PLURAL}}</span>
+                    <span><i class="fa-solid fa-clock"></i> Self-paced</span>
+                    <span><i class="fa-solid fa-signal"></i> Beginner to Intermediate</span>
+                </div>
+                
+                <!-- Tags -->
+                <div class="module-tags">
+                    {{MODULE_TAGS}}
+                </div>
+            </div>
+            
+            <div class="module-hero-visual">
+                <div class="code-preview-window">
+                    <div class="window-dots">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                    </div>
+                    <pre><code class="language-python">{{HERO_CODE_SNIPPET}}</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== MODULE LAYOUT ==================== -->
+    <main class="module-layout">
+        <div class="module-layout-container">
+            
+            <!-- SIDEBAR -->
+            <!-- SIDEBAR -->
+
+            <!-- Main Content -->
+            <article class="module-article">
+                
+                <!-- Overview -->
+                <section class="module-section" id="overview">
+                    <h2><i class="fa-solid fa-book-open"></i> Overview</h2>
+                    <div class="overview-content">
+                        <p>{{MODULE_DESCRIPTION}}</p>
+                        
+                        <h3>What You'll Build</h3>
+                        <div class="project-preview-list">
+                            {{PROJECT_PREVIEW_LIST}}
+                        </div>
+                        
+                        <h3>Prerequisites</h3>
+                        <ul class="prereq-list">
+                            <li><i class="fa-solid fa-check"></i> Python 3.8+ installed</li>
+                            <li><i class="fa-solid fa-check"></i> Basic command line knowledge</li>
+                            <li><i class="fa-solid fa-check"></i> A text editor (VS Code recommended)</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Projects -->
+                <!-- PROJECTS -->
+
+                <!-- Key Takeaways -->
+                <section class="module-section" id="takeaways">
+                    <h2><i class="fa-solid fa-lightbulb"></i> Key Takeaways</h2>
+                    <div class="takeaways-grid">
+                        {{TAKEAWAYS}}
+                    </div>
+                </section>
+
+                <!-- Related Modules -->
+                <section class="module-section" id="related">
+                    <h2><i class="fa-solid fa-link"></i> Related Modules</h2>
+                    <div class="related-grid">
+                        {{RELATED_MODULES}}
+                    </div>
+                </section>
+
+            </article>
+        </div>
+    </main>
+
+    <!-- ==================== BACK TO TOP ==================== -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <!-- FOOTER -->
+    <!-- FOOTER -->
+
+    <!-- ==================== SCRIPTS ==================== -->
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/search.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // Back to top button
+            const backToTop = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 500) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
+            });
+            
+            backToTop.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // Copy code buttons
+            document.querySelectorAll('.copy-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const codeBlock = this.closest('.code-block');
+                    const code = codeBlock.querySelector('code').textContent;
+                    
+                    navigator.clipboard.writeText(code).then(() => {
+                        const icon = this.querySelector('i');
+                        const originalClass = icon.className;
+                        icon.className = 'fa-solid fa-check';
+                        this.classList.add('copied');
+                        
+                        setTimeout(() => {
+                            icon.className = originalClass;
+                            this.classList.remove('copied');
+                        }, 2000);
+                    });
+                });
+            });
+
+            // Download script buttons
+            document.querySelectorAll('.download-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const filename = this.dataset.filename;
+                    const code = this.dataset.code;
+                    
+                    const blob = new Blob([code], { type: 'text/plain' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = filename;
+                    a.click();
+                    URL.revokeObjectURL(url);
+                });
+            });
+
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+
+            // Highlight active section in sidebar
+            const sections = document.querySelectorAll('.module-section[id]');
+            const sidebarLinks = document.querySelectorAll('.module-toc a');
+            
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 100;
+                    if (window.scrollY >= sectionTop) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                sidebarLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + current) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
