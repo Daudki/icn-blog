@@ -669,6 +669,133 @@
     border-color: #58a6ff;
 }
 
+/* ---------- POLISHED MODULE UX ENHANCEMENTS ---------- */
+.module-hero-visual {
+    display: flex;
+    justify-content: center;
+}
+
+.hero-card {
+    width: min(100%, 480px);
+    background: rgba(13, 17, 23, 0.95);
+    border: 1px solid #21262d;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+}
+
+.hero-card__header {
+    display: flex;
+    gap: 0.4rem;
+    padding: 0.8rem 1rem;
+    background: #161b22;
+    border-bottom: 1px solid #21262d;
+}
+
+.hero-card__header .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.hero-card__header .dot.red { background: #f85149; }
+.hero-card__header .dot.yellow { background: #d2991d; }
+.hero-card__header .dot.green { background: #3fb950; }
+
+.hero-card pre {
+    padding: 1rem 1.25rem;
+    margin: 0;
+    overflow-x: auto;
+}
+
+.hero-card code {
+    font-size: 0.85rem;
+    line-height: 1.7;
+}
+
+.section-intro {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+}
+
+.feature-pill-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.feature-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.45rem 0.8rem;
+    border-radius: 999px;
+    background: rgba(88, 166, 255, 0.1);
+    color: #79b8ff;
+    border: 1px solid rgba(88, 166, 255, 0.2);
+    font-size: 0.85rem;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.info-card {
+    background: #161b22;
+    border: 1px solid #21262d;
+    border-radius: 10px;
+    padding: 1rem 1.15rem;
+}
+
+.info-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.4rem;
+    color: #e6edf3;
+}
+
+.info-card p {
+    margin: 0;
+    color: #8b949e;
+    font-size: 0.95rem;
+}
+
+.section-heading {
+    margin-bottom: 1rem;
+}
+
+.section-heading p {
+    color: #8b949e;
+    margin-top: 0.35rem;
+}
+
+.resource-list li {
+    margin-bottom: 0.35rem;
+}
+
+.resource-list a {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.copy-btn.copied {
+    color: #3fb950;
+    border-color: #3fb950;
+    background: rgba(63, 185, 80, 0.12);
+}
+
+@media (max-width: 768px) {
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* ============================================ */
 /* RESPONSIVE                                   */
 /* ============================================ */

@@ -66,6 +66,7 @@ def main():
     except KeyboardInterrupt:
         print("\n\n👋 Server stopped.")
         sys.exit(0)
+        
     except OSError as e:
         if "Address already in use" in str(e):
             print(f"❌ Port {PORT} is already in use!")

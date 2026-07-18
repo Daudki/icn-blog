@@ -1,0 +1,105 @@
+<!-- ==================== SIDEBAR COMPONENT ==================== -->
+<!-- Injected into module detail pages by build.py -->
+
+<aside class="module-sidebar">
+    <!-- Table of Contents -->
+    <div class="module-toc">
+        <h3>On This Page</h3>
+        <ul>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#objectives">What You'll Learn</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#takeaways">Key Takeaways</a></li>
+            <li><a href="#related">Related Modules</a></li>
+        </ul>
+    </div>
+
+    <!-- Python Resources -->
+    <div class="module-toc">
+        <h3>Python Resources</h3>
+        <ul>
+            <li><a href="https://docs.python.org/3/" target="_blank" rel="noopener">
+                <i class="fa-solid fa-external-link-alt"></i> Official Docs
+            </a></li>
+            <li><a href="https://pypi.org/" target="_blank" rel="noopener">
+                <i class="fa-solid fa-external-link-alt"></i> PyPI Packages
+            </a></li>
+            <li><a href="https://realpython.com/" target="_blank" rel="noopener">
+                <i class="fa-solid fa-external-link-alt"></i> Real Python
+            </a></li>
+        </ul>
+    </div>
+
+    <!-- Got Questions? -->
+    <div class="module-toc">
+        <h3>Need Help?</h3>
+        <ul>
+            <li><a href="https://github.com/Daudki/icn-blog/issues" target="_blank" rel="noopener">
+                <i class="fa-solid fa-bug"></i> Report an Issue
+            </a></li>
+            <li><a href="../../index.html#modules">
+                <i class="fa-solid fa-book"></i> All Modules
+            </a></li>
+        </ul>
+    </div>
+</aside>
+
+<style>
+    .module-sidebar {
+        position: sticky;
+        top: 80px;
+        align-self: start;
+        max-height: calc(100vh - 100px);
+        overflow-y: auto;
+    }
+    .module-toc {
+        background: #161b22;
+        border: 1px solid #21262d;
+        border-radius: 8px;
+        padding: 1.25rem;
+        margin-bottom: 1rem;
+    }
+    .module-toc h3 {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #58a6ff;
+        margin-bottom: 0.75rem;
+    }
+    .module-toc ul {
+        list-style: none;
+        padding: 0;
+    }
+    .module-toc li {
+        margin-bottom: 0.25rem;
+    }
+    .module-toc a {
+        display: block;
+        padding: 0.4rem 0.6rem;
+        color: #8b949e;
+        text-decoration: none;
+        font-size: 0.85rem;
+        border-radius: 4px;
+        transition: all 0.15s;
+        border-left: 2px solid transparent;
+    }
+    .module-toc a:hover {
+        color: #e6edf3;
+        background: #1a2332;
+    }
+    .module-toc a.active {
+        color: #58a6ff;
+        background: rgba(88, 166, 255, 0.08);
+        border-left-color: #58a6ff;
+    }
+    .module-toc a i {
+        margin-right: 0.35rem;
+        font-size: 0.75rem;
+    }
+
+    @media (max-width: 1024px) {
+        .module-sidebar {
+            display: none;
+        }
+    }
+</style>

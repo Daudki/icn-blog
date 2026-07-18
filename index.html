@@ -5,218 +5,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="ICN Blog — Python × Networking × Security. Practical projects for ICN students at MUST.">
     <title>ICN Blog | Python × Networking × Security</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
     <style>
         :root {
-            --bg: #0a0e17;
-            --bg-card: #111827;
-            --bg-hover: #1a2332;
-            --border: #21262d;
-            --text: #e6edf3;
-            --text-muted: #8b949e;
-            --accent: #58a6ff;
-            --green: #3fb950;
-            --orange: #d2991d;
-            --red: #f85149;
-            --purple: #a371f7;
-            --radius: 8px;
-            --max: 1200px;
+            --bg: #0a0e17; --bg-card: #111827; --bg-hover: #1a2332; --border: #21262d;
+            --text: #e6edf3; --text-muted: #8b949e; --accent: #58a6ff; --accent-hover: #79b8ff;
+            --green: #3fb950; --orange: #d2991d; --red: #f85149; --purple: #a371f7;
+            --radius: 8px; --max: 1200px;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body {
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            min-height: 100vh;
+            background: var(--bg); color: var(--text); line-height: 1.6; min-height: 100vh;
         }
         a { color: var(--accent); text-decoration: none; transition: color 0.15s; }
-        a:hover { color: #79b8ff; }
+        a:hover { color: var(--accent-hover); }
 
-        /* HEADER */
-        .header {
-            background: var(--bg-card);
-            border-bottom: 1px solid var(--border);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        .header-inner {
-            max-width: var(--max);
-            margin: 0 auto;
-            padding: 0 1.25rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 60px;
-            gap: 1rem;
-        }
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--text);
-            font-weight: 700;
-            font-size: 1.1rem;
-        }
-        .logo i { color: var(--accent); font-size: 1.3rem; }
-        .nav { display: flex; gap: 0.25rem; }
-        .nav a {
-            color: var(--text-muted);
-            padding: 0.4rem 0.75rem;
-            border-radius: 6px;
-            font-size: 0.85rem;
-        }
-        .nav a:hover { color: var(--text); background: var(--bg-hover); }
-        .mobile-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--text);
-            font-size: 1.3rem;
-            cursor: pointer;
-        }
-        @media (max-width: 768px) {
-            .nav { display: none; }
-            .nav.open {
-                display: flex;
-                flex-direction: column;
-                position: absolute;
-                top: 60px;
-                left: 0;
-                right: 0;
-                background: var(--bg-card);
-                border-bottom: 1px solid var(--border);
-                padding: 1rem;
-            }
-            .mobile-btn { display: block; }
-        }
-
-        /* HERO */
-        .hero {
-            text-align: center;
-            padding: 3.5rem 1.25rem 2.5rem;
-            max-width: 700px;
-            margin: 0 auto;
-        }
+        .hero { text-align: center; padding: 3.5rem 1.25rem 2.5rem; max-width: 700px; margin: 0 auto; }
         .hero-badge {
-            display: inline-block;
-            background: rgba(88,166,255,0.1);
-            color: var(--accent);
-            padding: 0.3rem 0.9rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            border: 1px solid rgba(88,166,255,0.2);
+            display: inline-block; background: rgba(88,166,255,0.1); color: var(--accent);
+            padding: 0.3rem 0.9rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;
+            margin-bottom: 1rem; border: 1px solid rgba(88,166,255,0.2);
         }
-        .hero h1 {
-            font-size: clamp(1.8rem, 5vw, 2.8rem);
-            font-weight: 800;
-            margin-bottom: 0.75rem;
-            line-height: 1.2;
-        }
+        .hero h1 { font-size: clamp(1.8rem, 5vw, 2.8rem); font-weight: 800; margin-bottom: 0.75rem; line-height: 1.2; }
         .hero h1 span {
             background: linear-gradient(135deg, var(--accent), var(--purple));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
-        .hero p {
-            color: var(--text-muted);
-            font-size: 1.05rem;
-            margin-bottom: 1.5rem;
-        }
-        .hero-btns {
-            display: flex;
-            gap: 0.75rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
+        .hero p { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 1.5rem; }
+        .hero-btns { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
         .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.65rem 1.4rem;
-            border-radius: var(--radius);
-            font-weight: 600;
-            font-size: 0.9rem;
-            cursor: pointer;
-            border: 1px solid transparent;
-            transition: all 0.2s;
+            display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.4rem;
+            border-radius: var(--radius); font-weight: 600; font-size: 0.9rem; cursor: pointer;
+            border: 1px solid transparent; transition: all 0.2s;
         }
         .btn-primary { background: var(--accent); color: #000; }
-        .btn-primary:hover { background: #79b8ff; color: #000; }
+        .btn-primary:hover { background: var(--accent-hover); color: #000; }
         .btn-outline { background: transparent; color: var(--text); border-color: var(--border); }
         .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
 
-        /* STATS */
         .stats {
-            max-width: var(--max);
-            margin: 0 auto 2.5rem;
-            padding: 0 1.25rem;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1rem;
+            max-width: var(--max); margin: 0 auto 2.5rem; padding: 0 1.25rem;
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
         }
-        @media (max-width: 600px) { .stats { grid-template-columns: 1fr 1fr; } }
         .stat-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 1.25rem;
-            text-align: center;
+            background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 1.25rem; text-align: center;
         }
         .stat-card i { font-size: 1.4rem; color: var(--accent); margin-bottom: 0.3rem; }
         .stat-card .num { font-size: 1.8rem; font-weight: 800; display: block; }
         .stat-card .lbl { color: var(--text-muted); font-size: 0.8rem; }
 
-        /* SECTION */
-        .section {
-            max-width: var(--max);
-            margin: 0 auto 3rem;
-            padding: 0 1.25rem;
-        }
-        .section h2 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 0.3rem;
-        }
-        .section .sub {
-            color: var(--text-muted);
-            margin-bottom: 1.25rem;
-            font-size: 0.95rem;
-        }
+        .section { max-width: var(--max); margin: 0 auto 3rem; padding: 0 1.25rem; }
+        .section h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.3rem; }
+        .section .sub { color: var(--text-muted); margin-bottom: 1.25rem; font-size: 0.95rem; }
 
-        /* YEAR CARDS */
-        .year-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1rem;
-        }
-        @media (max-width: 900px) { .year-grid { grid-template-columns: 1fr 1fr; } }
-        @media (max-width: 500px) { .year-grid { grid-template-columns: 1fr; } }
+        .year-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
         .year-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 1.5rem;
-            cursor: pointer;
-            transition: all 0.2s;
-            position: relative;
+            background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 1.5rem; cursor: pointer; transition: all 0.2s; position: relative;
         }
-        .year-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-2px);
-        }
+        .year-card:hover { border-color: var(--accent); transform: translateY(-2px); }
         .year-card .badge {
-            display: inline-block;
-            padding: 0.2rem 0.6rem;
-            border-radius: 4px;
-            font-size: 0.7rem;
-            font-weight: 700;
-            margin-bottom: 0.75rem;
+            display: inline-block; padding: 0.2rem 0.6rem; border-radius: 4px;
+            font-size: 0.7rem; font-weight: 700; margin-bottom: 0.75rem;
         }
         .y1 .badge { background: rgba(63,185,80,0.15); color: var(--green); }
         .y2 .badge { background: rgba(88,166,255,0.15); color: var(--accent); }
@@ -226,165 +82,90 @@
         .year-card p { color: var(--text-muted); font-size: 0.82rem; margin-bottom: 0.75rem; }
         .year-card .count { font-size: 0.78rem; color: var(--accent); font-weight: 600; }
 
-        /* SEARCH & FILTER */
-        .controls {
-            display: flex;
-            gap: 0.75rem;
-            margin-bottom: 1.25rem;
-            flex-wrap: wrap;
-        }
+        .controls { display: flex; gap: 0.75rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
         .search-box {
-            flex: 1;
-            min-width: 200px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 0.55rem 1rem;
-            color: var(--text);
-            font-size: 0.9rem;
-            outline: none;
+            flex: 1; min-width: 200px; background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 0.55rem 1rem; color: var(--text);
+            font-size: 0.9rem; outline: none;
         }
         .search-box:focus { border-color: var(--accent); }
         .filter-row { display: flex; gap: 0.35rem; flex-wrap: wrap; }
         .filter-btn {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            color: var(--text-muted);
-            padding: 0.4rem 0.8rem;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 0.78rem;
+            background: var(--bg-card); border: 1px solid var(--border); color: var(--text-muted);
+            padding: 0.4rem 0.8rem; border-radius: 20px; cursor: pointer; font-size: 0.78rem;
             transition: all 0.15s;
         }
         .filter-btn:hover { color: var(--text); }
-        .filter-btn.active {
-            background: var(--accent);
-            color: #000;
-            border-color: var(--accent);
-            font-weight: 600;
-        }
+        .filter-btn.active { background: var(--accent); color: #000; border-color: var(--accent); font-weight: 600; }
 
-        /* MODULE CARDS */
-        .module-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-            gap: 0.85rem;
-        }
+        .module-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 0.85rem; }
         .mod-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 1.2rem;
-            cursor: pointer;
-            transition: all 0.2s;
-            border-top: 3px solid var(--border);
+            background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 1.2rem; cursor: pointer; transition: all 0.2s; border-top: 3px solid var(--border);
         }
-        .mod-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-        }
+        .mod-card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.3); }
         .mod-card.y1 { border-top-color: var(--green); }
         .mod-card.y2 { border-top-color: var(--accent); }
         .mod-card.y3 { border-top-color: var(--orange); }
         .mod-card.y4 { border-top-color: var(--purple); }
-        .mod-card .icon-row {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            margin-bottom: 0.5rem;
-        }
+        .mod-card .icon-row { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.5rem; }
         .mod-card .icon-row i { font-size: 1.3rem; }
-        .mod-card .icon-row .code {
-            font-size: 0.7rem;
-            color: var(--accent);
-            font-family: monospace;
-            margin-left: auto;
-        }
+        .mod-card .icon-row .code { font-size: 0.7rem; color: var(--accent); font-family: monospace; margin-left: auto; }
         .mod-card h3 { font-size: 1rem; margin-bottom: 0.3rem; }
         .mod-card .desc {
-            color: var(--text-muted);
-            font-size: 0.82rem;
-            margin-bottom: 0.75rem;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
+            color: var(--text-muted); font-size: 0.82rem; margin-bottom: 0.75rem;
+            display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
         }
-        .mod-card .meta {
-            display: flex;
-            gap: 0.75rem;
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            margin-bottom: 0.5rem;
-        }
+        .mod-card .meta { display: flex; gap: 0.75rem; font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.5rem; }
         .mod-card .meta i { margin-right: 0.2rem; }
         .mod-card .bottom {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 0.6rem;
-            border-top: 1px solid var(--border);
-            font-size: 0.78rem;
+            display: flex; justify-content: space-between; align-items: center;
+            padding-top: 0.6rem; border-top: 1px solid var(--border); font-size: 0.78rem;
         }
         .mod-card .bottom .projects { color: var(--green); }
         .mod-card .bottom .arrow { color: var(--accent); opacity: 0; transition: opacity 0.2s; }
         .mod-card:hover .bottom .arrow { opacity: 1; }
 
-        .no-results {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 3rem;
-            color: var(--text-muted);
-        }
+        .no-results { grid-column: 1 / -1; text-align: center; padding: 3rem; color: var(--text-muted); }
         .no-results i { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
 
-        /* TECH GRID */
-        .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-            gap: 0.75rem;
-        }
+        .tech-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 0.75rem; }
         .tech-item {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 1rem;
-            text-align: center;
-            transition: all 0.2s;
+            background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 1rem; text-align: center; transition: all 0.2s;
         }
         .tech-item:hover { border-color: var(--accent); }
         .tech-item i { font-size: 1.6rem; margin-bottom: 0.3rem; display: block; }
         .tech-item span { font-size: 0.8rem; font-weight: 600; }
         .tech-item small { display: block; color: var(--text-muted); font-size: 0.65rem; }
 
-        /* FOOTER */
-        .footer {
-            background: var(--bg-card);
-            border-top: 1px solid var(--border);
-            text-align: center;
-            padding: 1.5rem;
-            margin-top: 3rem;
-            color: var(--text-muted);
-            font-size: 0.85rem;
+        @media (max-width: 900px) { .year-grid { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 768px) {
+            .stats { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 500px) {
+            .year-grid { grid-template-columns: 1fr; }
+            .stats { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 1.5rem; }
         }
     </style>
 </head>
 <body>
 
-    <header class="header">
+    <header class="global-header">
         <div class="header-inner">
-            <a href="index.html" class="logo">
+            <a href="index.html" class="header-logo">
                 <i class="fa-solid fa-network-wired"></i>
                 ICN Blog
             </a>
-            <nav class="nav" id="mainNav">
-                <a href="index.html">Home</a>
+            <nav class="header-nav" id="mainNav">
+                <a href="index.html" class="active">Home</a>
                 <a href="about.html">About</a>
+                <a href="portfolio/index.html">Portfolio</a>
+                <a href="search.html">Search</a>
                 <a href="#modules">Modules</a>
             </nav>
-            <button class="mobile-btn" id="mobileBtn" aria-label="Menu">
+            <button class="mobile-menu-btn" id="mobileBtn" aria-label="Menu">
                 <i class="fa-solid fa-bars"></i>
             </button>
         </div>
@@ -397,13 +178,13 @@
             <p>Every module in your degree transformed into practical Python projects. Understand networking, security, and automation by building real tools — with detailed, line-by-line explanations.</p>
             <div class="hero-btns">
                 <a href="#modules" class="btn btn-primary"><i class="fa-solid fa-rocket"></i> Browse Modules</a>
-                <a href="#modules" class="btn btn-outline"><i class="fa-solid fa-magnifying-glass"></i> Search</a>
+                <a href="search.html" class="btn btn-outline"><i class="fa-solid fa-magnifying-glass"></i> Search</a>
             </div>
         </section>
 
         <section class="stats">
-            <div class="stat-card"><i class="fa-solid fa-book"></i><span class="num" id="statModules">0</span><span class="lbl">Python Modules</span></div>
-            <div class="stat-card"><i class="fa-solid fa-diagram-project"></i><span class="num" id="statProjects">0</span><span class="lbl">Projects</span></div>
+            <div class="stat-card"><i class="fa-solid fa-book"></i><span class="num" id="statModules">28</span><span class="lbl">Python Modules</span></div>
+            <div class="stat-card"><i class="fa-solid fa-diagram-project"></i><span class="num" id="statProjects">28</span><span class="lbl">Projects</span></div>
             <div class="stat-card"><i class="fa-solid fa-code"></i><span class="num">10K+</span><span class="lbl">Lines of Code</span></div>
             <div class="stat-card"><i class="fa-solid fa-graduation-cap"></i><span class="num">4</span><span class="lbl">Years</span></div>
         </section>
@@ -416,25 +197,25 @@
                     <span class="badge">Year 1</span>
                     <h3>Foundation</h3>
                     <p>Programming, Networking Basics, OS, Architecture</p>
-                    <span class="count" id="countY1">0 Modules</span>
+                    <span class="count" id="countY1">9 Modules</span>
                 </div>
                 <div class="year-card y2" onclick="filterByYear('year2')">
                     <span class="badge">Year 2</span>
                     <h3>Intermediate</h3>
                     <p>Network Mgmt, Linux, AI, Information Systems</p>
-                    <span class="count" id="countY2">0 Modules</span>
+                    <span class="count" id="countY2">6 Modules</span>
                 </div>
                 <div class="year-card y3" onclick="filterByYear('year3')">
                     <span class="badge">Year 3</span>
                     <h3>Advanced</h3>
                     <p>Security, Forensics, Cloud, Ethical Hacking, ML</p>
-                    <span class="count" id="countY3">0 Modules</span>
+                    <span class="count" id="countY3">8 Modules</span>
                 </div>
                 <div class="year-card y4" onclick="filterByYear('year4')">
                     <span class="badge">Year 4</span>
                     <h3>Specialization</h3>
                     <p>IoT, Digital Forensics, NLP, Blockchain, Final Project</p>
-                    <span class="count" id="countY4">0 Modules</span>
+                    <span class="count" id="countY4">5 Modules</span>
                 </div>
             </div>
         </section>
@@ -473,60 +254,37 @@
         </section>
     </main>
 
-    <footer class="footer">
-        <p>ICN Blog — Built by <strong>theOutcast</strong> | Mbeya University of Science & Technology</p>
-        <p style="margin-top:0.3rem;">Python × Networking × Security</p>
+    <footer class="global-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <h3>ICN Blog</h3>
+                <p>Python × Networking × Security</p>
+                <p style="font-size:0.85rem;">Mbeya University of Science & Technology</p>
+            </div>
+            <div class="footer-links">
+                <h4>Navigate</h4>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="portfolio/index.html">Portfolio</a>
+                <a href="search.html">Search</a>
+            </div>
+            <div class="footer-links">
+                <h4>Resources</h4>
+                <a href="https://github.com/Daudki/icn-blog" target="_blank" rel="noopener">GitHub</a>
+                <a href="index.html#modules">All Modules</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Built by <strong>theOutcast</strong> | &copy; <span id="footerYear"></span></p>
+        </div>
     </footer>
 
+    <script src="js/search.js"></script>
+    <script src="js/utils.js"></script>
     <script>
-        // Fetch module data and render everything
-        fetch('data/modules.json')
-            .then(res => res.json())
-            .then(data => {
-                const allModules = flattenModules(data);
-                window.__ALL_MODULES = allModules;
-                updateStats(allModules);
-                renderModules(allModules);
-            })
-            .catch(err => {
-                document.getElementById('moduleGrid').innerHTML = 
-                    '<div class="no-results"><i class="fa-solid fa-triangle-exclamation"></i><h3>Could not load modules</h3><p>Make sure data/modules.json exists.</p></div>';
-                console.error(err);
-            });
-
-        function flattenModules(data) {
-            const flat = [];
-            for (const [yearKey, yearData] of Object.entries(data)) {
-                const yearNum = parseInt(yearKey.replace('year', ''));
-                for (const [semKey, semData] of Object.entries(yearData)) {
-                    for (const mod of semData.modules || []) {
-                        flat.push({
-                            ...mod,
-                            yearKey,
-                            yearNum,
-                            yearLabel: `Year ${yearNum}`,
-                            semKey,
-                            semLabel: semData.name || `Semester ${semKey.replace('semester', '')}`,
-                            slug: mod.name.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-').replace(/\//g, '-'),
-                            projectCount: (mod.projects || []).length
-                        });
-                    }
-                }
-            }
-            return flat;
-        }
-
-        function updateStats(modules) {
-            document.getElementById('statModules').textContent = modules.length;
-            const totalProjects = modules.reduce((s, m) => s + m.projectCount, 0);
-            document.getElementById('statProjects').textContent = totalProjects;
-            
-            ['year1', 'year2', 'year3', 'year4'].forEach(yk => {
-                const count = modules.filter(m => m.yearKey === yk).length;
-                const el = document.getElementById('count' + yk.charAt(0).toUpperCase() + yk.slice(1));
-                if (el) el.textContent = `${count} Modules`;
-            });
-        }
+        let ALL_MODULES = [];
+        let currentFilter = 'all';
+        let currentQuery = '';
 
         const ICONS = {
             'programming': 'fa-code', 'networking': 'fa-network-wired', 'security': 'fa-shield-haltered',
@@ -536,22 +294,65 @@
         };
         const COLORS = {
             'programming': '#3fb950', 'networking': '#58a6ff', 'security': '#f85149',
-            'data': '#d2991d', 'systems': '#a371f7', 'ai': '#ec4899', 'web': '#14b8a6', 'default': '#8b949e'
+            'data': '#d2991d', 'systems': '#a371f7', 'ai': '#ec4899', 'web': '#14b8a6',
+            'default': '#8b949e'
         };
 
         function getIcon(mod) { return ICONS[mod.icon] || ICONS['default']; }
         function getColor(mod) { return COLORS[mod.icon] || COLORS['default']; }
         function getYearClass(mod) {
-            return mod.yearKey === 'year1' ? 'y1' : mod.yearKey === 'year2' ? 'y2' : mod.yearKey === 'year3' ? 'y3' : 'y4';
+            return mod.year_key === 'year1' ? 'y1' : mod.year_key === 'year2' ? 'y2' :
+                   mod.year_key === 'year3' ? 'y3' : 'y4';
         }
 
-        let currentFilter = 'all';
-        let currentQuery = '';
+        function loadModules() {
+            fetch('data/modules.json')
+                .then(res => res.json())
+                .then(data => {
+                    ALL_MODULES = flattenModules(data);
+                    updateStats(ALL_MODULES);
+                    renderModules();
+                })
+                .catch(err => {
+                    document.getElementById('moduleGrid').innerHTML =
+                        '<div class="no-results"><i class="fa-solid fa-triangle-exclamation"></i><h3>Could not load modules</h3><p>Make sure data/modules.json exists.</p></div>';
+                });
+        }
 
-        function renderModules(filtered) {
-            if (!filtered) filtered = window.__ALL_MODULES || [];
-            
-            if (currentFilter !== 'all') filtered = filtered.filter(m => m.yearKey === currentFilter);
+        function flattenModules(data) {
+            const flat = [];
+            for (const [yearKey, yearData] of Object.entries(data)) {
+                for (const [semKey, semData] of Object.entries(yearData)) {
+                    for (const mod of semData.modules || []) {
+                        const slug = mod.name.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-').replace(/\//g, '-');
+                        flat.push({
+                            ...mod,
+                            year_key: yearKey,
+                            year_label: `Year ${yearKey.replace('year', '')}`,
+                            sem_label: semData.name || '',
+                            slug: slug,
+                            url: `modules/${yearKey}/${slug}.html`,
+                            project_count: (mod.projects || []).length
+                        });
+                    }
+                }
+            }
+            return flat;
+        }
+
+        function updateStats(modules) {
+            document.getElementById('statModules').textContent = modules.length;
+            document.getElementById('statProjects').textContent = modules.reduce((s, m) => s + m.project_count, 0);
+            ['year1', 'year2', 'year3', 'year4'].forEach(yk => {
+                const count = modules.filter(m => m.year_key === yk).length;
+                const el = document.getElementById('countY' + yk.charAt(4));
+                if (el) el.textContent = `${count} Modules`;
+            });
+        }
+
+        function renderModules() {
+            let filtered = ALL_MODULES;
+            if (currentFilter !== 'all') filtered = filtered.filter(m => m.year_key === currentFilter);
             if (currentQuery.trim().length >= 2) {
                 const q = currentQuery.toLowerCase().trim();
                 filtered = filtered.filter(m =>
@@ -570,9 +371,7 @@
 
             grid.innerHTML = filtered.map(m => {
                 const color = getColor(m);
-                const url = `modules/${m.yearKey}/${m.slug}.html`;
-                return `
-                <div class="mod-card ${getYearClass(m)}" onclick="window.location.href='${url}'" tabindex="0" onkeydown="if(event.key==='Enter')window.location.href='${url}'">
+                return `<div class="mod-card ${getYearClass(m)}" onclick="window.location.href='${m.url}'" tabindex="0" onkeydown="if(event.key==='Enter')window.location.href='${m.url}'">
                     <div class="icon-row">
                         <i class="fa-solid ${getIcon(m)}" style="color:${color}"></i>
                         <span class="code">${m.code || ''}</span>
@@ -580,11 +379,11 @@
                     <h3>${m.name}</h3>
                     <p class="desc">${m.description || ''}</p>
                     <div class="meta">
-                        <span><i class="fa-solid fa-calendar"></i> ${m.yearLabel}</span>
-                        <span><i class="fa-solid fa-clock"></i> ${m.semLabel}</span>
+                        <span><i class="fa-solid fa-calendar"></i> ${m.year_label}</span>
+                        <span><i class="fa-solid fa-clock"></i> ${m.sem_label}</span>
                     </div>
                     <div class="bottom">
-                        <span class="projects"><i class="fa-solid fa-code"></i> ${m.projectCount} project${m.projectCount !== 1 ? 's' : ''}</span>
+                        <span class="projects"><i class="fa-solid fa-code"></i> ${m.project_count} project${m.project_count !== 1 ? 's' : ''}</span>
                         <span class="arrow"><i class="fa-solid fa-arrow-right"></i></span>
                     </div>
                 </div>`;
@@ -595,14 +394,17 @@
             currentFilter = year;
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
             document.querySelector(`.filter-btn[data-year="${year}"]`)?.classList.add('active');
-            renderModules(window.__ALL_MODULES);
+            renderModules();
             document.getElementById('modules').scrollIntoView({ behavior: 'smooth' });
         }
 
         document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('footerYear').textContent = new Date().getFullYear();
+            loadModules();
+
             document.getElementById('searchInput').addEventListener('input', function() {
                 currentQuery = this.value;
-                renderModules(window.__ALL_MODULES);
+                renderModules();
             });
 
             document.querySelectorAll('.filter-btn').forEach(btn => {
