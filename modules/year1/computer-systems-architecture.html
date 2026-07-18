@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Computer Networks introduces TCP/IP, routing, IP addressing, and packet-based communication through beginner-friendly Python projects.">
-    <title>Computer Networks | ICN Blog</title>
+    <meta name="description" content="Computer Systems Architecture introduces CPUs, memory, storage, and I/O through practical Python projects and simple system profilers.">
+    <title>Computer Systems Architecture | ICN Blog</title>
 
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/modules.css">
@@ -34,7 +34,7 @@
             <ol>
                 <li><a href="../../index.html"><i class="fa-solid fa-house"></i> Home</a></li>
                 <li><a href="../../index.html#modules">Modules</a></li>
-                <li aria-current="page">Computer Networks</li>
+                <li aria-current="page">Computer Systems Architecture</li>
             </ol>
         </div>
     </nav>
@@ -43,18 +43,18 @@
         <div class="module-hero-container">
             <div class="module-hero-content">
                 <span class="module-badge">Year 1 · Semester 1</span>
-                <h1>Computer Networks</h1>
-                <p class="module-description">Explore the OSI model, TCP/IP, IP addressing, and packet flow through simple scripts that model network behavior.</p>
+                <h1>Computer Systems Architecture</h1>
+                <p class="module-description">Study the inner structure of computers through CPU basics, memory hierarchy, storage systems, and practical Python-based system tools.</p>
                 <div class="module-meta">
                     <span><i class="fa-solid fa-code"></i> 2 guided projects</span>
                     <span><i class="fa-solid fa-clock"></i> Beginner-friendly pace</span>
-                    <span><i class="fa-solid fa-signal"></i> Networking fundamentals</span>
+                    <span><i class="fa-solid fa-signal"></i> Hardware fundamentals</span>
                 </div>
                 <div class="module-tags">
-                    <span class="tag">TCP/IP</span>
-                    <span class="tag">Subnetting</span>
-                    <span class="tag">ARP</span>
-                    <span class="tag">Packets</span>
+                    <span class="tag">CPU</span>
+                    <span class="tag">Memory</span>
+                    <span class="tag">Storage</span>
+                    <span class="tag">I/O</span>
                 </div>
             </div>
             <div class="module-hero-visual">
@@ -64,10 +64,11 @@
                         <span class="dot yellow"></span>
                         <span class="dot green"></span>
                     </div>
-                    <pre><code class="language-python">import ipaddress
+                    <pre><code class="language-python">import platform
+import psutil
 
-network = ipaddress.ip_network('192.168.1.0/24')
-print(network.network_address, network.broadcast_address)</code></pre>
+print(platform.processor())
+print(psutil.cpu_count(logical=False))</code></pre>
                 </div>
             </div>
         </div>
@@ -99,23 +100,23 @@ print(network.network_address, network.broadcast_address)</code></pre>
                 <section class="module-section" id="overview">
                     <div class="section-intro">
                         <h2><i class="fa-solid fa-book-open"></i> Overview</h2>
-                        <p>Networking is all about how devices exchange information. This module starts from the OSI and TCP/IP models and turns them into simple Python exercises that model addressing, routes, and local communication.</p>
+                        <p>This module helps you connect hardware concepts such as the CPU, memory hierarchy, storage, and input/output with small Python scripts that observe your own system.</p>
                     </div>
 
                     <div class="feature-pill-row">
-                        <div class="feature-pill"><i class="fa-solid fa-check"></i> Understand the TCP/IP stack</div>
-                        <div class="feature-pill"><i class="fa-solid fa-check"></i> Practice IP and subnet logic</div>
-                        <div class="feature-pill"><i class="fa-solid fa-check"></i> Build simple network tools</div>
+                        <div class="feature-pill"><i class="fa-solid fa-check"></i> Understand core computer components</div>
+                        <div class="feature-pill"><i class="fa-solid fa-check"></i> Compare RAM, cache, and storage</div>
+                        <div class="feature-pill"><i class="fa-solid fa-check"></i> Build simple hardware profilers</div>
                     </div>
 
                     <div class="info-grid">
                         <div class="info-card">
                             <h3>What you will build</h3>
-                            <p>A local network scanner and a subnet calculator that make common networking ideas more concrete.</p>
+                            <p>A system profiler and a memory hierarchy explorer that turn abstract hardware ideas into something visible and practical.</p>
                         </div>
                         <div class="info-card">
                             <h3>Best for</h3>
-                            <p>Students who want to see how network theory relates to actual addresses, packets, and local devices.</p>
+                            <p>Students who want to see how theory about processors and memory translates into real machine behavior.</p>
                         </div>
                     </div>
                 </section>
@@ -123,42 +124,42 @@ print(network.network_address, network.broadcast_address)</code></pre>
                 <section class="module-section" id="projects">
                     <div class="section-heading">
                         <h2><i class="fa-solid fa-diagram-project"></i> Projects</h2>
-                        <p>Each project introduces a networking concept using a small, testable script.</p>
+                        <p>Each project introduces one important part of computer architecture in a practical way.</p>
                     </div>
 
                     <div class="project-card">
                         <div class="project-header">
-                            <h3><i class="fa-solid fa-network-wired"></i> Network Device Scanner</h3>
+                            <h3><i class="fa-solid fa-microchip"></i> System Hardware Profiler</h3>
                             <span class="project-difficulty Beginner">Beginner</span>
                         </div>
                         <div class="project-body open">
-                            <p>Send ARP requests for a local subnet and list the devices that respond, which helps you understand how hosts discover each other on a LAN.</p>
+                            <p>Use Python to inspect processor details, core count, memory size, and disk information on the machine you are using.</p>
                             <div class="code-block">
                                 <div class="code-header">
-                                    <span>network_scanner.py</span>
-                                    <button class="copy-btn" data-code="network-scanner"><i class="fa-solid fa-copy"></i> Copy</button>
+                                    <span>system_profiler.py</span>
+                                    <button class="copy-btn" data-code="system-profiler"><i class="fa-solid fa-copy"></i> Copy</button>
                                 </div>
-                                <pre id="network-scanner"><code class="language-python">from scapy.all import ARP, Ether, srp
+                                <pre id="system-profiler"><code class="language-python">import platform
+import psutil
 
 
-def scan_network(ip_range='192.168.1.0/24'):
-    packet = Ether(dst='ff:ff:ff:ff:ff:ff') / ARP(pdst=ip_range)
-    result = srp(packet, timeout=3, verbose=0)[0]
+def system_profiler():
+    print('CPU:', platform.processor())
+    print('Physical cores:', psutil.cpu_count(logical=False))
+    print('Logical cores:', psutil.cpu_count(logical=True))
 
-    devices = []
-    for _, received in result:
-        devices.append({'ip': received.psrc, 'mac': received.hwsrc})
-    return devices
+    mem = psutil.virtual_memory()
+    print('RAM:', round(mem.total / (1024 ** 3), 2), 'GB')
 
-for device in scan_network():
-    print(device['ip'], device['mac'])</code></pre>
+
+system_profiler()</code></pre>
                             </div>
                             <div class="explanation">
                                 <h4><i class="fa-solid fa-lightbulb"></i> Why it matters</h4>
                                 <ol>
-                                    <li>It shows how a network is discovered at the data-link layer.</li>
-                                    <li>ARP is a great example of simple communication between devices on the same network.</li>
-                                    <li>The script can later become a basic inventory tool or monitoring helper.</li>
+                                    <li>It shows how the CPU and memory are exposed through software.</li>
+                                    <li>Core counts and memory size connect hardware concepts to measurable values.</li>
+                                    <li>The script can become a starter dashboard for system analysis later.</li>
                                 </ol>
                             </div>
                         </div>
@@ -166,30 +167,32 @@ for device in scan_network():
 
                     <div class="project-card">
                         <div class="project-header">
-                            <h3><i class="fa-solid fa-sitemap"></i> Subnet Calculator</h3>
+                            <h3><i class="fa-solid fa-memory"></i> Memory Hierarchy Explorer</h3>
                             <span class="project-difficulty Beginner">Beginner</span>
                         </div>
                         <div class="project-body">
-                            <p>Use Python’s ipaddress module to explore network boundaries, host ranges, and subnet sizes without memorizing everything by hand.</p>
+                            <p>Compare the roles of registers, cache, RAM, and storage using a simple model that helps you reason about speed and capacity.</p>
                             <div class="code-block">
                                 <div class="code-header">
-                                    <span>subnet_calc.py</span>
-                                    <button class="copy-btn" data-code="subnet-calculator"><i class="fa-solid fa-copy"></i> Copy</button>
+                                    <span>memory_hierarchy.py</span>
+                                    <button class="copy-btn" data-code="memory-hierarchy"><i class="fa-solid fa-copy"></i> Copy</button>
                                 </div>
-                                <pre id="subnet-calculator"><code class="language-python">import ipaddress
+                                <pre id="memory-hierarchy"><code class="language-python">hierarchy = [
+    ("Registers", "Fastest, smallest, closest to CPU"),
+    ("Cache", "Very fast, small, stores frequently used data"),
+    ("RAM", "Main working memory for active programs"),
+    ("Storage", "Large, slower, persistent data")
+]
 
-network = ipaddress.ip_network('10.0.0.0/24')
-print('Network:', network.network_address)
-print('Broadcast:', network.broadcast_address)
-print('Host count:', network.num_addresses)
-print('First host:', list(network.hosts())[0])</code></pre>
+for level, description in hierarchy:
+    print(f"{level}: {description}")</code></pre>
                             </div>
                             <div class="explanation">
                                 <h4><i class="fa-solid fa-lightbulb"></i> Why it matters</h4>
                                 <ol>
-                                    <li>It turns subnetting into a visible pattern instead of a list of abstract rules.</li>
-                                    <li>The ipaddress module makes it easy to reason about ranges and boundaries.</li>
-                                    <li>This is a strong foundation for routing and network design topics.</li>
+                                    <li>It makes the memory hierarchy easier to remember.</li>
+                                    <li>You can see that performance and size trade off across levels.</li>
+                                    <li>This becomes a foundation for understanding how programs execute efficiently.</li>
                                 </ol>
                             </div>
                         </div>
@@ -202,19 +205,19 @@ print('First host:', list(network.hosts())[0])</code></pre>
                     </div>
                     <div class="takeaways-grid">
                         <div class="takeaway-card">
-                            <i class="fa-solid fa-globe"></i>
-                            <h4>Think in layers</h4>
-                            <p>Networking becomes easier when you separate the physical, data-link, and IP-level concerns.</p>
+                            <i class="fa-solid fa-microchip"></i>
+                            <h4>See hardware clearly</h4>
+                            <p>Small scripts make the relationship between architecture and software easier to grasp.</p>
                         </div>
                         <div class="takeaway-card">
-                            <i class="fa-solid fa-ruler-combined"></i>
-                            <h4>Master addressing</h4>
-                            <p>IPs, masks, and host ranges are easier to understand when you can inspect them directly.</p>
+                            <i class="fa-solid fa-memory"></i>
+                            <h4>Understand trade-offs</h4>
+                            <p>Speed, capacity, and cost differ across levels of the memory hierarchy.</p>
                         </div>
                         <div class="takeaway-card">
-                            <i class="fa-solid fa-shield-halved"></i>
-                            <h4>Build a network mindset</h4>
-                            <p>Small tools help you think like a network engineer instead of just memorizing terms.</p>
+                            <i class="fa-solid fa-rocket"></i>
+                            <h4>Build computer intuition</h4>
+                            <p>These projects give you a stronger base for later topics like operating systems and networking.</p>
                         </div>
                     </div>
                 </section>
@@ -224,20 +227,20 @@ print('First host:', list(network.hosts())[0])</code></pre>
                         <h2><i class="fa-solid fa-link"></i> Resources</h2>
                     </div>
                     <div class="related-grid">
-                        <a href="https://scapy.readthedocs.io/" class="related-card" target="_blank" rel="noopener">
-                            <i class="fa-solid fa-network-wired"></i>
-                            <h4>Scapy docs</h4>
-                            <span>Useful for packet crafting and network exploration</span>
-                        </a>
-                        <a href="https://docs.python.org/3/library/ipaddress.html" class="related-card" target="_blank" rel="noopener">
+                        <a href="https://docs.python.org/3/library/platform.html" class="related-card" target="_blank" rel="noopener">
                             <i class="fa-solid fa-book"></i>
-                            <h4>Python ipaddress</h4>
-                            <span>Excellent reference for subnet and address calculations</span>
+                            <h4>Python platform module</h4>
+                            <span>Useful when inspecting host and processor details</span>
+                        </a>
+                        <a href="https://psutil.readthedocs.io/" class="related-card" target="_blank" rel="noopener">
+                            <i class="fa-solid fa-server"></i>
+                            <h4>psutil docs</h4>
+                            <span>Great for reading memory and CPU information</span>
                         </a>
                         <a href="../../search.html" class="related-card">
                             <i class="fa-solid fa-magnifying-glass"></i>
                             <h4>Explore more</h4>
-                            <span>Find more study notes and related modules</span>
+                            <span>Find related modules and notes quickly</span>
                         </a>
                     </div>
                 </section>

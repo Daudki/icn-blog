@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Operating Systems introduces processes, memory, filesystems, and system monitoring through practical Python projects.">
+    <title>Operating Systems | ICN Blog</title>
+
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/modules.css">
+    <link rel="stylesheet" href="../../css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+    <header class="global-header">
+        <div class="header-inner">
+            <a href="../../index.html" class="header-logo">
+                <i class="fa-solid fa-network-wired"></i>
+                ICN Blog
+            </a>
+            <nav class="header-nav">
+                <a href="../../index.html">Home</a>
+                <a href="../../about.html">About</a>
+                <a href="../../search.html">Search</a>
+                <a href="../../index.html#modules" class="active">Modules</a>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+        <div class="breadcrumb-container">
+            <ol>
+                <li><a href="../../index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li><a href="../../index.html#modules">Modules</a></li>
+                <li aria-current="page">Operating Systems</li>
+            </ol>
+        </div>
+    </nav>
+
+    <section class="module-hero">
+        <div class="module-hero-container">
+            <div class="module-hero-content">
+                <span class="module-badge">Year 1 · Semester 1</span>
+                <h1>Operating Systems</h1>
+                <p class="module-description">Understand how computers manage processes, memory, and filesystems through practical Python tools and real system observations.</p>
+                <div class="module-meta">
+                    <span><i class="fa-solid fa-code"></i> 2 guided projects</span>
+                    <span><i class="fa-solid fa-clock"></i> Beginner-friendly pace</span>
+                    <span><i class="fa-solid fa-signal"></i> Core systems concepts</span>
+                </div>
+                <div class="module-tags">
+                    <span class="tag">Processes</span>
+                    <span class="tag">Memory</span>
+                    <span class="tag">Filesystems</span>
+                    <span class="tag">Linux</span>
+                </div>
+            </div>
+            <div class="module-hero-visual">
+                <div class="hero-card">
+                    <div class="hero-card__header">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                    </div>
+                    <pre><code class="language-python">import psutil
+
+for proc in psutil.process_iter(['pid', 'name']):
+    print(proc.info)</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="module-layout">
+        <div class="module-layout-container">
+            <aside class="module-sidebar">
+                <div class="module-toc">
+                    <h3>On This Page</h3>
+                    <ul>
+                        <li><a href="#overview">Overview</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#takeaways">Key Takeaways</a></li>
+                        <li><a href="#resources">Resources</a></li>
+                    </ul>
+                </div>
+
+                <div class="module-toc">
+                    <h3>Quick Links</h3>
+                    <ul class="resource-list">
+                        <li><a href="../../index.html#modules"><i class="fa-solid fa-book"></i> All modules</a></li>
+                        <li><a href="../../about.html"><i class="fa-solid fa-circle-info"></i> About the blog</a></li>
+                    </ul>
+                </div>
+            </aside>
+
+            <article class="module-article">
+                <section class="module-section" id="overview">
+                    <div class="section-intro">
+                        <h2><i class="fa-solid fa-book-open"></i> Overview</h2>
+                        <p>This module shows how operating systems manage the resources your programs depend on. You will connect textbook ideas like scheduling, memory use, and file access to small Python tools you can run yourself.</p>
+                    </div>
+
+                    <div class="feature-pill-row">
+                        <div class="feature-pill"><i class="fa-solid fa-check"></i> Learn process basics</div>
+                        <div class="feature-pill"><i class="fa-solid fa-check"></i> Observe memory behavior</div>
+                        <div class="feature-pill"><i class="fa-solid fa-check"></i> Build practical system tools</div>
+                    </div>
+
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h3>What you will build</h3>
+                            <p>A process monitor and a disk-usage reporter that turn abstract OS concepts into something visible and useful.</p>
+                        </div>
+                        <div class="info-card">
+                            <h3>Best for</h3>
+                            <p>Students who want to connect theory with real system behavior, especially in Linux environments.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="module-section" id="projects">
+                    <div class="section-heading">
+                        <h2><i class="fa-solid fa-diagram-project"></i> Projects</h2>
+                        <p>Each project introduces an OS concept while staying practical and easy to follow.</p>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3><i class="fa-solid fa-microchip"></i> Process Monitor</h3>
+                            <span class="project-difficulty Intermediate">Intermediate</span>
+                        </div>
+                        <div class="project-body open">
+                            <p>Use Python to list running processes, inspect their memory footprints, and identify which programs consume the most resources.</p>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span>process_monitor.py</span>
+                                    <button class="copy-btn" data-code="process-monitor"><i class="fa-solid fa-copy"></i> Copy</button>
+                                </div>
+                                <pre id="process-monitor"><code class="language-python">import psutil
+
+
+def top_processes(limit=10):
+    procs = []
+    for p in psutil.process_iter(['pid', 'name', 'cpu_percent']):
+        try:
+            info = p.info
+            info['mem_mb'] = p.memory_info().rss / (1024 * 1024)
+            procs.append(info)
+        except Exception:
+            continue
+
+    procs.sort(key=lambda item: item['mem_mb'], reverse=True)
+    return procs[:limit]
+
+for i, proc in enumerate(top_processes(), 1):
+    print(f"{i}. PID:{proc['pid']:6} | {proc['mem_mb']:6.0f}MB | {proc['name']}")</code></pre>
+                            </div>
+                            <div class="explanation">
+                                <h4><i class="fa-solid fa-lightbulb"></i> Why it matters</h4>
+                                <ol>
+                                    <li>It exposes the idea of process scheduling and resource usage in a very tangible way.</li>
+                                    <li>Memory is measured in real numbers, helping you connect theory to actual system behavior.</li>
+                                    <li>The script can be expanded into a monitoring dashboard later.</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3><i class="fa-solid fa-folder-tree"></i> Disk Usage Reporter</h3>
+                            <span class="project-difficulty Beginner">Beginner</span>
+                        </div>
+                        <div class="project-body">
+                            <p>Walk a directory tree and report which folders consume the most space so you can understand file system management better.</p>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span>disk_usage.py</span>
+                                    <button class="copy-btn" data-code="disk-usage"><i class="fa-solid fa-copy"></i> Copy</button>
+                                </div>
+                                <pre id="disk-usage"><code class="language-python">import os
+
+
+def folder_sizes(start_path):
+    sizes = []
+    for root, dirs, files in os.walk(start_path):
+        total = 0
+        for name in files:
+            path = os.path.join(root, name)
+            if os.path.isfile(path):
+                total += os.path.getsize(path)
+        sizes.append((root, total))
+    return sizes
+
+for path, size in folder_sizes('.')[:10]:
+    print(f'{size:10} bytes  {path}')</code></pre>
+                            </div>
+                            <div class="explanation">
+                                <h4><i class="fa-solid fa-lightbulb"></i> Why it matters</h4>
+                                <ol>
+                                    <li>It helps you see how filesystems store and organize information.</li>
+                                    <li>Walking directories reinforces how operating systems manage access paths.</li>
+                                    <li>You can turn it into a cleanup assistant or storage analyzer later.</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="module-section" id="takeaways">
+                    <div class="section-heading">
+                        <h2><i class="fa-solid fa-lightbulb"></i> Key Takeaways</h2>
+                    </div>
+                    <div class="takeaways-grid">
+                        <div class="takeaway-card">
+                            <i class="fa-solid fa-microchip"></i>
+                            <h4>See the system in action</h4>
+                            <p>Processes and memory become easier to understand when you can inspect them directly.</p>
+                        </div>
+                        <div class="takeaway-card">
+                            <i class="fa-solid fa-sitemap"></i>
+                            <h4>Think in layers</h4>
+                            <p>Operating systems are a stack of services, and each project helps you see that structure more clearly.</p>
+                        </div>
+                        <div class="takeaway-card">
+                            <i class="fa-solid fa-rocket"></i>
+                            <h4>Build useful tools</h4>
+                            <p>Simple scripts can evolve into real monitoring or administration utilities.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="module-section" id="resources">
+                    <div class="section-heading">
+                        <h2><i class="fa-solid fa-link"></i> Resources</h2>
+                    </div>
+                    <div class="related-grid">
+                        <a href="https://docs.python.org/3/library/os.html" class="related-card" target="_blank" rel="noopener">
+                            <i class="fa-solid fa-book"></i>
+                            <h4>Python os module</h4>
+                            <span>Great reference for file and process-related operations</span>
+                        </a>
+                        <a href="https://psutil.readthedocs.io/" class="related-card" target="_blank" rel="noopener">
+                            <i class="fa-solid fa-server"></i>
+                            <h4>psutil docs</h4>
+                            <span>Use this for system information and process discovery</span>
+                        </a>
+                        <a href="../../search.html" class="related-card">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <h4>Explore more</h4>
+                            <span>Find related modules and notes quickly</span>
+                        </a>
+                    </div>
+                </section>
+            </article>
+        </div>
+    </main>
+
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <footer class="global-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <h3><i class="fa-solid fa-network-wired"></i> ICN Blog</h3>
+                <p>Python, networking, and security study notes for practical learning.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Explore</h4>
+                <a href="../../index.html">Home</a>
+                <a href="../../about.html">About</a>
+                <a href="../../search.html">Search</a>
+            </div>
+            <div class="footer-links">
+                <h4>Support</h4>
+                <a href="../../index.html#modules">Modules</a>
+                <a href="mailto:contact@icnblog.com">Contact</a>
+            </div>
+        </div>
+        <div class="footer-bottom">© 2026 ICN Blog. Built for clearer learning.</div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const backToTop = document.getElementById('backToTop');
+            const sections = document.querySelectorAll('.module-section[id]');
+            const sidebarLinks = document.querySelectorAll('.module-toc a');
+            const copyButtons = document.querySelectorAll('.copy-btn');
+
+            window.addEventListener('scroll', () => {
+                backToTop.classList.toggle('visible', window.scrollY > 500);
+
+                let current = '';
+                sections.forEach(section => {
+                    if (window.scrollY >= section.offsetTop - 120) {
+                        current = section.id;
+                    }
+                });
+
+                sidebarLinks.forEach(link => {
+                    link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+                });
+            });
+
+            backToTop.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            copyButtons.forEach(button => {
+                button.addEventListener('click', async () => {
+                    const targetId = button.getAttribute('data-code');
+                    const code = document.getElementById(targetId)?.textContent || '';
+                    try {
+                        await navigator.clipboard.writeText(code);
+                        const icon = button.querySelector('i');
+                        const original = icon.className;
+                        icon.className = 'fa-solid fa-check';
+                        button.classList.add('copied');
+                        setTimeout(() => {
+                            icon.className = original;
+                            button.classList.remove('copied');
+                        }, 1800);
+                    } catch (error) {
+                        console.error('Copy failed', error);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
