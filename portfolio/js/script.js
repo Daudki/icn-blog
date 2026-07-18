@@ -99,10 +99,69 @@ skillBars.forEach((bar) => skillObserver.observe(bar));
 const contactForm = document.getElementById("contactForm");
 
 if (contactForm) {
-    contactForm.addEventListener("submit", (e) => {
+    contactForm.addEventListener("submit", async (e) => {
         e.preventDefault();
-        alert("Thank you for your message! I will get back to you soon.");
-        contactForm.reset();
+
+        const submitButton = contactForm.querySelector("button[type='submit']");
+        const originalText = submitButton ? submitButton.innerHTML : "";
+        const formData = new FormData(contactForm);
+        const payload = Object.fromEntries(formData.entries());
+
+        if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Sending...';
+        }
+
+        try {
+            const isLocalDev = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+            const endpoint = isLocalDev ? "/api/contact" : "https://formsubmit.co/ajax/daudki044@gmail.com";
+
+            let response;
+            let result;
+
+            if (isLocalDev) {
+                response = await fetch(endpoint, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload)
+                });
+                result = await response.json();
+            } else {
+                const params = new URLSearchParams();
+                Object.entries(payload).forEach(([key, value]) => params.append(key, value));
+                params.append("_subject", payload.subject || "Portfolio contact form");
+                params.append("_replyto", payload.email || "");
+                params.append("_next", window.location.href);
+                response = await fetch(endpoint, {
+                    method: "POST",
+                    headers: { "Accept": "application/json" },
+                    body: params
+                });
+                result = await response.json();
+            }
+
+            if (!response.ok) {
+                throw new Error(result.message || "Unable to send your message right now.");
+            }
+
+            contactForm.reset();
+            const successMessage = document.createElement("p");
+            successMessage.className = "form-success";
+            successMessage.textContent = "Thank you! Your message has been received.";
+            contactForm.appendChild(successMessage);
+            setTimeout(() => successMessage.remove(), 5000);
+        } catch (error) {
+            const errorMessage = document.createElement("p");
+            errorMessage.className = "form-error";
+            errorMessage.textContent = error.message || "Something went wrong while sending your message.";
+            contactForm.appendChild(errorMessage);
+            setTimeout(() => errorMessage.remove(), 5000);
+        } finally {
+            if (submitButton) {
+                submitButton.disabled = false;
+                submitButton.innerHTML = originalText;
+            }
+        }
     });
 }
 

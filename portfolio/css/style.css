@@ -1235,6 +1235,26 @@ textarea.form-control {
     resize: vertical;
 }
 
+.form-success,
+.form-error {
+    margin-top: 14px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+}
+
+.form-success {
+    color: #dcfce7;
+    background: rgba(22, 163, 74, 0.16);
+    border: 1px solid rgba(74, 222, 128, 0.3);
+}
+
+.form-error {
+    color: #fecaca;
+    background: rgba(220, 38, 38, 0.16);
+    border: 1px solid rgba(248, 113, 113, 0.3);
+}
+
 footer {
     padding: 72px 0 36px;
     border-top: 1px solid rgba(10, 215, 243, 0.18);
